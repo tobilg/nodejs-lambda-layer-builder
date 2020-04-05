@@ -11,8 +11,8 @@ displayVer() {
 
 # Display usage
 usage() {
-  echo -e "AWS Lambda Layer Uploader\n"
-  echo -e "Usage: ${scriptname} [-l NODEJS_RUNTIME_VERSION] [-n NAME] [-h] [-v]"
+  echo -e "AWS Lambda Layer Publisher\n"
+  echo -e "Usage: ${scriptname} [-l NODEJS_RUNTIME_VERSION] [-n NAME] [-b BUCKET_NAME] [-c] [-h] [-v]"
   echo -e "  -l NODEJS_RUNTIME_VERSION\t: Node runtime version to use: 8.10, 10.x, 12.x (default 10.x)"
   echo -e "  -n NAME\t\t\t: Name of the layer"
   echo -e "  -b BUCKET_NAME\t\t: Name of the S3 bucket to use for uploading the layer contents"

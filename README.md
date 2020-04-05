@@ -36,6 +36,8 @@ git submodule update --init --recursive --remote
 
 ## Usage
 
+### Building the layer
+
 ```text
 $ ./build.sh -h
 AWS Lambda Layer Builder for Node libraries
@@ -48,14 +50,37 @@ Usage: build.sh [-l NODEJS_RUNTIME_VERSION] [-n NAME] [-r] [-h] [-v]
   -v                            : Display build.sh version
 ```
 
-- Run the builder with the command `./build.sh`
-  - or `_build_layer/build.sh` if installed in sub-dir
-- It uses the first requirements.txt file found in these locations (in order):
+- Run the builder with the command `./build.sh` or `_build_layer/build.sh` if installed in sub-dir
+- It uses the first package.json file found in these locations (in order):
   - Same directory as script
   - Parent directory of script (useful when used as submodule)
   - Function sub-directory of the parent directory (useful when used as submodule)
 - Optionally specify the Node runtime Version
-  - `-l NODEJS_RUNTIME_VERSION` Node runtime version to use: 8.10, 10.x, 12.x (default 10.x)
+  - `-l NODEJS_RUNTIME_VERSION`: Node runtime version to use: 8.10, 10.x, 12.x (default `10.x`)
+
+### Publishing the layer
+
+You can use the included `publish.sh` script to publish your newly built layer.
+
+```text
+$  ./publish.sh -h
+AWS Lambda Layer Publisher
+
+Usage: publish.sh [-l NODEJS_RUNTIME_VERSION] [-n NAME] [-b BUCKET_NAME] [-c] [-h] [-v]
+  -l NODEJS_RUNTIME_VERSION     : Node runtime version to use: 8.10, 10.x, 12.x (default 10.x)
+  -n NAME                       : Name of the layer
+  -b BUCKET_NAME                : Name of the S3 bucket to use for uploading the layer contents
+  -c                            : Create S3 Bucket for layer upload
+  -h                            : Help
+  -v                            : Display publish.sh version
+```
+
+- Run the publisher with the command `./publish.sh` or `_build_layer/publish.sh` if installed in sub-dir
+- Optionally specify the following flags
+  - `-l NODEJS_RUNTIME_VERSION`: Node runtime version to use: 8.10, 10.x, 12.x (default `10.x`)
+  - `-n NAME`: Name of the layer (should fit to what you used with `build.sh`)
+  - `-b BUCKET_NAME`: Name of the S3 bucket to use for uploading the layer contents
+  - `-c`: Flag for creating a S3 bucket for uploading the layer's contents (default name: `layer-uploads-$AWS_ACCOUNT_ID`)
 
 ### Custom cleaning logic
 
