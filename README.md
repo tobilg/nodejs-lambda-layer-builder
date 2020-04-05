@@ -57,6 +57,7 @@ Usage: build.sh [-l NODEJS_RUNTIME_VERSION] [-n NAME] [-r] [-h] [-v]
   - Function sub-directory of the parent directory (useful when used as submodule)
 - Optionally specify the Node runtime Version
   - `-l NODEJS_RUNTIME_VERSION`: Node runtime version to use: 8.10, 10.x, 12.x (default `10.x`)
+  - `-n NAME`: Name of the layer
 
 ### Publishing the layer
 
