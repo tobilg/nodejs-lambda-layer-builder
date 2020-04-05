@@ -2,11 +2,11 @@
 
 Creates an AWS Lambda Layers structure that is **optimized** for: [Lambda Layer directory structure](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html#configuration-layers-path), compiled library compatibility, and minimal file size.
 
-**Note: This script requires Docker and uses a container to mimic the Lambda environment.**
+**Note: This script requires Docker and uses a container to mimic the Lambda environment. If you also want to use the publish.sh script, make sure you have the AWS CLI and jq installed as well**
 
 ## Features
 
-- Builds either a zip file or a raw directory strucutre (e.g. if you want to use frameworks like Serverless for packaging) containing Python dependencies and places the libraries into the proper directory structure for lambda layers
+- Builds either a zip file or a raw directory strucutre (e.g. if you want to use frameworks like Serverless for packaging) containing Node dependencies and places the libraries into the proper directory structure for lambda layers
 - Ensures compiled libraries are compatible with Lambda environment by using the [lambci/lambda](https://hub.docker.com/r/lambci/lambda) Docker container that mimics the lambda runtime environment
 - Allows specifying AWS Lambda supported Node versions: 8.10, 10.x and 12.x
 - Automatically searches for `package.json` file in several locations:
