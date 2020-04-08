@@ -22,11 +22,15 @@ echo "Building layer: ${NAME} for ${NODEJS}"
 rm -rf /tmp/build
 
 # Create build dir
-mkdir -p /tmp/build
+mkdir -p /tmp/build/nodejs
 
 # Install requirements
-cp /temp/build/package.json /tmp/build
-cd /tmp/build
+# We must create a 'nodejs' folder, where the packages are installed to,
+# as Lambda has set the NODE_PATH to /opt/nodejs/node_modules, see
+# https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-runtime
+# Otherwise, you'd have to tweak the NODE_PATH yourself
+cp /temp/build/package.json /tmp/build/nodejs
+cd /tmp/build/nodejs
 npm i
 
 # Remove unused stuff
